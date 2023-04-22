@@ -39,7 +39,7 @@ Example implementation for MindAr.js is given below:
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.1/dist/mindar-image-aframe.prod.js"></script>
   <!-- import ONNXRuntime Web from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
-    <!-- import ONNXRuntime Web from CDN -->
+    <!-- Component -->
   <script src="js/u2net-component.js"></script>
 </head>
 <body> 
@@ -65,7 +65,7 @@ Example implementation for AR.js is given below:
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   <!-- import ONNXRuntime Web from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
-    <!-- import ONNXRuntime Web from CDN -->
+    <!-- Component -->
   <script src="js/u2net-component.js"></script>
 </head>
 <body> 
