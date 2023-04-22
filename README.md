@@ -43,7 +43,7 @@ Example implementation for MindAr.js is given below:
   <script src="js/u2net-component.js"></script>
 </head>
 <body> 
-  <a-scene u2net="uiText: Loading cool experience...; nnModel: models/u2netp_default.onnx"
+  <a-scene u2net="uiText: Loading...; nnModel: models/u2netp_default.onnx"
     mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.1/examples/image-tracking/assets/band-example/band.mind;"
     vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
     <a-entity mindar-image-target="targetIndex: 0">
@@ -69,7 +69,7 @@ Example implementation for AR.js is given below:
   <script src="js/u2net-component.js"></script>
 </head>
 <body> 
-  <a-scene u2net="uiLogo: img/loader.gif; arSystem: arJS"
+  <a-scene u2net="uiText: Loading...; arSystem: arJS"
   embedded arjs>
     <a-marker preset="hiro">
       <a-plane id="u2netPlane" width="1" height="1" scale="0 0 0" material="">
