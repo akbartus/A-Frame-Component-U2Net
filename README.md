@@ -1,5 +1,5 @@
 # A-Frame Component: Web-based U2Net
-<img alt="Screenshot" src="img/screenshot.jpg" width="600">
+<img alt="Screenshot" src="img/screenshot.jpg" height="500">
 
 ### **Description / Rationale**
 This is the A-Frame component, which loads web-based U2Net (for more information check <a href="https://github.com/xuebinqin/U-2-Net">U2Net page</a>) neural network allowing to do salient object detection. The component is compatible with latest version of A-Frame (ver. 1.4.1).   
