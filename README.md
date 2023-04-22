@@ -85,7 +85,7 @@ Example implementation for AR.js is given below:
 Depending on the capacity of a mobile device the performance can be faster or slower. Changing default model to smaller models can help.   
 
 ### **U2Net Models**
-The default model is an optimized model. All other models were converted using onnx converter.
+The default model is an optimized model. All other models were reduced to corresponding sizes.
  
 ### **Tech Stack**
 The project is powered by AFrame and Three.js in combination of free webAR systems as MindAR.js and AR.js.  
