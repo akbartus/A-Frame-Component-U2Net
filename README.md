@@ -5,7 +5,7 @@
 This is the A-Frame component, which loads web-based U2Net (for more information check <a href="https://github.com/xuebinqin/U-2-Net">U2Net page</a>) neural network allowing to do salient object detection. The component is compatible with latest version of A-Frame (ver. 1.4.1).   
 
 ### **Instructions**
-To see the component at work add "u2net" to a-scene element. The component has the following attributes: 
+To see the component at work add "u2net" to "a-scene" element. The component has the following attributes: 
 * arSystem: { type: "string", default: "mindAR" } - defines which free web-based AR system is used. It can be  "mindAR" or "arJS".
 * nnModel: { type: "string", default: "models/u2netp_default.onnx" } - indicates which U2Net model is used. It has the following options: u2netp_default.onnx, u2netp_320.onnx, u2netp_224.onnx, u2netp_124.onnx. Default model has better quality than smaller models.  
 * uiText: { default: "" } - the text which appears during the loading of the U2Net model. If uiLogo is indicated as well, it will only show this text.
