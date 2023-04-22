@@ -11,22 +11,72 @@ To see the component at work add "u2net" component to <a-scene> element. The com
 * uiText: { default: "" } - the text which appears during the loading of the U2Net model. If uiLogo is indicated as well, it will only show this text.
 * uiLogo: { default: "" } - the logo url. Logo appears during rhe loading of the U2Net model. If uiText is indicated as well, it will show uiText only. 
 * uiOverlayColor: { default: "rgba(0, 0, 0, 1)" } - the color of the overlay which appears during U2Net model loading. RGBA values are accepted.
-  
-Example implementation is given below:
+
+In order to work, it also requires indication of the following in the <head> section of html document:
+OnnxRuntimeWeb: 
+```
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+```
+WebAR system: 
+```
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.1/dist/mindar-image-aframe.prod.js"></script> 
+```
+or  
+```
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+```
+And a plane with the following parameters inside marker tags:
+```
+<a-plane id="u2netPlane" width="1" height="1" scale="0 0 0" material="">
+<img id="selected-image" src=""/>
+ </a-plane>
+```  
+Example implementation for MindAr.js is given below:
 ```
 <html>
 <head>
   <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-  <script src="js/aframe-shaderfrog-component.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.1/dist/mindar-image-aframe.prod.js"></script>
+  <!-- import ONNXRuntime Web from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <!-- import ONNXRuntime Web from CDN -->
+  <script src="js/u2net-component.js"></script>
 </head>
-<body>
-  <a-scene>
-    <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-    <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-    <a-torus position="0 1 -5" radius="1" shader-frog="src:url(shaders/shader9.json)">
-    </a-torus>
-    <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-    <a-sky rotation="-180 0 90" shader-frog="src:url(shaders/shader8.json); side: double"></a-sky>
+<body> 
+  <a-scene u2net="uiText: Loading cool experience...; nnModel: models/u2netp_default.onnx"
+    mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.1/examples/image-tracking/assets/band-example/band.mind;"
+    vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane id="u2netPlane" width="1" height="1" scale="0 0 0" material="">
+        <img id="selected-image" src=""/>
+      </a-plane>
+    </a-entity>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+  </a-scene>
+</body>
+</html>
+```
+Example implementation for AR.js is given below:
+```
+<html>
+<head>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <!-- we import arjs version without NFT but with marker + location based support -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <!-- import ONNXRuntime Web from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <!-- import ONNXRuntime Web from CDN -->
+  <script src="js/u2net-component.js"></script>
+</head>
+<body> 
+  <a-scene u2net="uiLogo: img/loader.gif; arSystem: arJS"
+  embedded arjs>
+    <a-marker preset="hiro">
+      <a-plane id="u2netPlane" width="1" height="1" scale="0 0 0" material="">
+        <img id="selected-image" src=""/>
+      </a-plane>
+    </a-marker>
+    <a-entity camera></a-entity>
   </a-scene>
 </body>
 </html>
