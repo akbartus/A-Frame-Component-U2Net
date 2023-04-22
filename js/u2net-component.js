@@ -2,7 +2,7 @@
 AFRAME.registerComponent("u2net", {
   schema: {
     arSystem: { type: "string", default: "mindAR" }, //mindAR or arJS
-    nnModel: { type: "string", default: "models/u2netp_default.onnx" }, // u2netp_320.onnx, u2netp_224.onnx, u2netp_124.onnx  
+    nnModel: { type: "string", default: "models/u2netp_default.onnx" }, // u2netp_320.onnx, u2netp_224.onnx, u2netp_124.onnx
     uiText: { default: "" }, // any text string
     uiLogo: { default: "" }, // 'any logo url'
     uiOverlayColor: { default: "rgba(0, 0, 0, 1)" },
@@ -15,7 +15,6 @@ AFRAME.registerComponent("u2net", {
     let video;
     let resultImg;
     let w, h;
-
 
     // Check model used
     if (this.data.nnModel == "models/u2netp_default.onnx") {
@@ -71,39 +70,34 @@ AFRAME.registerComponent("u2net", {
 
       // Create overlay element
       this.overlay = document.createElement("div");
-      this.overlay.id = "overlay";
-      this.overlay.style.position = "absolute";
-      this.overlay.style.top = "0";
-      this.overlay.style.left = "0";
-      this.overlay.style.width = "100%";
-      this.overlay.style.height = "100%";
-      this.overlay.style.backgroundColor = this.data.uiOverlayColor;
-      this.overlay.style.zIndex = "3";
-      this.overlay.style.display = "none";
+      this.overlay.setAttribute("id", "overlay");
+      this.overlay.setAttribute(
+        "style",
+        "position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: " +
+          this.data.uiOverlayColor +
+          "; z-index: 3; display: none;"
+      );
       this.el.appendChild(this.overlay);
 
       // Create UI text element
       if (this.data.uiText) {
         this.uiText = document.createElement("div");
-        this.uiText.id = "uiText";
-        this.uiText.style.position = "absolute";
-        this.uiText.style.top = "50%";
-        this.uiText.style.left = "50%";
-        this.uiText.style.transform = "translate(-50%, -50%)";
-        this.uiText.style.color = "white";
-        this.uiText.style.fontSize = "20px";
+        this.uiText.setAttribute("id", "uiText");
+        this.uiText.setAttribute(
+          "style",
+          "position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 20px;"
+        );
         this.uiText.innerText = this.data.uiText;
         this.overlay.appendChild(this.uiText);
       } else if (this.data.uiLogo) {
         // Create UI logo element
         this.uiLogo = document.createElement("img");
-        this.uiLogo.id = "uiLogo";
-        this.uiLogo.src = this.data.uiLogo;
-        this.uiLogo.style.position = "absolute";
-        this.uiLogo.style.top = "50%";
-        this.uiLogo.style.left = "50%";
-        this.uiLogo.style.display = "block";
-        this.uiLogo.style.transform = "translate(-50%, -50%)";
+        this.uiLogo.setAttribute("id", "uiLogo");
+        this.uiLogo.setAttribute("src", this.data.uiLogo);
+        this.uiLogo.setAttribute(
+          "style",
+          "position: absolute; top: 50%; left: 50%; display: block; transform: translate(-50%, -50%);"
+        );
         this.overlay.appendChild(this.uiLogo);
       }
     });
@@ -116,7 +110,7 @@ AFRAME.registerComponent("u2net", {
           .getContext("2d")
           .drawImage(video, 0, 0, canvas.width, canvas.height);
         document
-          .querySelector("#selected-image")
+          .querySelector("#capturedImage")
           .setAttribute("src", canvas.toDataURL());
         doPrediction(this.data.nnModel);
       }
@@ -129,9 +123,8 @@ AFRAME.registerComponent("u2net", {
       const session = await ort.InferenceSession.create(model, {
         executionProviders: ["wasm"],
       }).then(console.log("model loaded"));
-      const inputNames = session.inputNames;
-      const outputNames = session.outputNames;
-      let image = document.querySelector("#selected-image");
+
+      let image = document.querySelector("#capturedImage");
       let oc = document.createElement("canvas"),
         octx = oc.getContext("2d");
       oc.width = w;
@@ -210,7 +203,7 @@ AFRAME.registerComponent("u2net", {
       maskCtx.drawImage(image, 0, 0, oc.width, oc.height);
       maskCtx.globalCompositeOperation = "destination-in";
       maskCtx.drawImage(canvas, 0, 0);
-      resultImg = document.getElementById("selected-image");
+      resultImg = document.getElementById("capturedImage");
       resultImg.setAttribute("src", maskCanvas.toDataURL("image/png"));
       resultImg.setAttribute("width", w);
       resultImg.setAttribute("height", h);
