@@ -88,7 +88,7 @@ Depending on the capacity of a mobile device the performance can be faster or sl
 The default model is an optimized model. All other models were converted using onnx converter.
  
 ### **Tech Stack**
-The project is powered by AFrame and Three.js in combination of free webAR systems MindAR.js and AR.js  
+The project is powered by AFrame and Three.js in combination of free webAR systems as MindAR.js and AR.js.  
 
 ### **Demo**
 See demo of the component here: [Demo](https://u2net.glitch.me/)
