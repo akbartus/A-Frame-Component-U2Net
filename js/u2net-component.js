@@ -214,4 +214,4 @@ AFRAME.registerComponent("u2net", {
       document.querySelector("#u2netPlane").setAttribute("scale", "1 1 1");
     }
   },
-});
+}); 
